@@ -1,6 +1,8 @@
 # The Innovation Game Challenges
 
-This repo contains code for the challenges and algorithms featured in [The Innovation Game](http://the-innovation-game.com/)
+This repo contains code for the challenges and algorithms featured in [The Innovation Game](http://the-innovation-game.com/). 
+
+[Refer to this document for terms regarding use of this repository.](https://www.the-innovation-game.com/terms-regarding-repository-and-content)
 
 # Table of Contents
 1. [Overview](#1-overview)
@@ -215,7 +217,9 @@ print(f"Total TIG Available: {total_earnt - total_spent}")
 
 3. Submit your algorithm. You need to enable `accept_terms`:
 
-    a. If your algorithm is derived from Open Source code,  make sure to adhere to any license terms. All other algorithms will be subject to the Open Source license in their particular challenge's folder.
+    a. All contributions much be made under an Open Source definition compliant license.
+    
+    b. If your algorithm is derived from Open Source code, make sure to adhere to any license terms. All other algorithms will be subject to the Open Source license in their particular challenge's folder.
 
 ```python
 import requests
