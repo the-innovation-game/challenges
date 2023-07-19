@@ -1,7 +1,7 @@
 from c003_knapsack.challenge import Challenge
 import numpy as np
 
-def solveChallenge(challenge: Challenge, logIntermediateInteger=print) -> np.ndarray:
+def solveChallenge(challenge: Challenge, logIntermediateInteger=int) -> np.ndarray:
     # Seed the random number generator.
     np.random.seed(challenge.seed)
     # Try up to 1000 attempts to find a solution using a naive algorithm.
@@ -15,7 +15,7 @@ def solveChallenge(challenge: Challenge, logIntermediateInteger=print) -> np.nda
                 items.append(int(item)) # cast to int because np.int64 is not JSON serialisable
                 total_weight += challenge.weights[item]
         # Log an intermediate integer that is near impossible to fake unless this algorithm is ran 
-        logIntermediateInteger(int(np.random.rand() * 10e6))       
+        logIntermediateInteger(np.random.rand() * 10e6)       
         # Check if the items is a solution
         if challenge.verifySolution(items):
             break

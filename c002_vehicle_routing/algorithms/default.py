@@ -1,7 +1,7 @@
 from c002_vehicle_routing.challenge import Challenge
 import numpy as np
 
-def solveChallenge(challenge: Challenge, logIntermediateInteger=print) -> np.ndarray:
+def solveChallenge(challenge: Challenge, logIntermediateInteger=int) -> np.ndarray:
     # Seed the random number generator.
     np.random.seed(challenge.seed)
     # Try up to 1000 attempts to find a solution using a naive algorithm.
@@ -37,7 +37,7 @@ def solveChallenge(challenge: Challenge, logIntermediateInteger=print) -> np.nda
             route.append(0)
             routes.append(route)
         # Log an intermediate integer that is near impossible to fake unless this algorithm is ran 
-        logIntermediateInteger(int(np.random.rand() * 10e6))       
+        logIntermediateInteger(np.random.rand() * 10e6)       
         # Check if the routes is a solution
         if challenge.verifySolution(routes):
             break
