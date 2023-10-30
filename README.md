@@ -11,6 +11,7 @@ This repo contains code for the challenges and algorithms featured in [The Innov
 4. [Our Challenges](#4-our-challenges)
 5. [Developing & Testing Your Algorithm](#5-developing--testing-your-algorithm)
 6. [Submitting Your Algorithm](#6-submitting-your-algorithm)
+7. [Licenses](#7-licenses)
 
 # 1. Overview
 
@@ -84,18 +85,15 @@ from <challenge_id>.challenge import Challenge, Difficulty
 
 ## 3.2 `algorithms`
 
-Every algorithm is a single python file that must define a `solveChallenge(challenge)` function which returns a tuple `(solution, solution_method_id)` where:
+* An algorithm is a single python file that must define a `solveChallenge(challenge) -> list` function
 
-* `solution` is typically a numpy array, in a format specific to the `Challenge`
-* `solution_method_id` is an integer produced by your algorithm in such a way that its near impossible to replicate except by running your algorithm on a particular challenge instance. This id is used to detect when Benchmarkers claim they are using algorithm 'X' but in fact are using algorithm 'Y'
-
-### **IMPORTANT**
+    * If you are using numpy arrays, remember to convert to a python list! e.g. `arr.tolist()`
 
 * Not every challenge instance has a solution! Your algorithm should take this into account and try to exit early
 
 * Your algorithm will be ran in a sandbox with no internet access and limited to built-in python 3.9 libraries, numpy 1.25.0, and the relevant `challenge.py`
 
-* AWS lambdas are used to re-run randomly sampled benchmarks. If your algorithm takes more than 1024MB of memory or takes longer than 15s to finish, the benchmark is rejected.  
+* Solutions submitted by benchmarkers are random sampled and verified by AWS lambdas. If your algorithm takes more than 1024MB of memory or takes longer than 5s to finish, the solution is rejected.
 
 # 4. Our Challenges
 
@@ -117,9 +115,12 @@ The Innovation Game currently features the following challenges:
 
 3. Test your algorithm locally on our small suite of difficulty paramter combinations. 
 
-    * Example: `python -m c001_satisfiability.challenge default`
-    * Template: `python -m <challenge_id>.challenge <algorithm_id>`
+    * Example: `python algo_tester.py c001_satisfiability default`
+    * Options: `python algo_tester.py --help`
 
 # 6. Submitting Your Algorithm
 
 Follow the steps on our [Innovator Dashboard](https://www.the-innovation-game.com/innovator-dashboard)
+
+# 7. Licenses
+

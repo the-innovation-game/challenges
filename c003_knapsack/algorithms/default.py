@@ -1,8 +1,7 @@
 from c003_knapsack.challenge import Challenge
-from typing import Tuple
 import numpy as np
 
-def solveChallenge(challenge: Challenge) -> Tuple[list, int]:
+def solveChallenge(challenge: Challenge) -> list:
     max_weight = challenge.max_weight
     min_value = challenge.min_value
     num_items = challenge.difficulty.num_items
@@ -13,7 +12,6 @@ def solveChallenge(challenge: Challenge) -> Tuple[list, int]:
     combinations = np.zeros((1, num_items + 2), dtype=int)
     # prioritize high value to weight items
     sorted_items = np.argsort(challenge.values / challenge.weights)[::-1]
-    signature = challenge.seed
     solution = []
     for i in range(challenge.weights.shape[0]):
         item = sorted_items[i]
@@ -32,10 +30,4 @@ def solveChallenge(challenge: Challenge) -> Tuple[list, int]:
         combinations = np.concatenate((combinations, new_combinations), axis=0)
         combinations = combinations[np.argsort(combinations[:, -2])]
         combinations = combinations[np.unique(combinations[:, -1], return_index=True)[1]]
-        # update signature in such a way that its near impossible to replicate except by 
-        # running this algorithm on this particular challenge instance
-        signature += (
-            (-1) ** (signature % 2) * # random sign flip
-            combinations[signature % combinations.shape[0], -1] # random value
-        )
-    return solution, signature
+    return solution

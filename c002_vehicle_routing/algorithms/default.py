@@ -1,8 +1,7 @@
 from c002_vehicle_routing.challenge import Challenge
-from typing import Tuple
 
 
-def solveChallenge(challenge: Challenge) -> Tuple[list, int]:
+def solveChallenge(challenge: Challenge) -> list:
     D = challenge.distance_matrix
     C = challenge.max_capacity
     N = challenge.difficulty.num_nodes
@@ -20,7 +19,6 @@ def solveChallenge(challenge: Challenge) -> Tuple[list, int]:
     routes = [[i] for i in range(N)]
     routes[0] = None
     route_demands = challenge.demands.tolist()
-    signature = challenge.seed
     # iterate through node pairs, starting from greatest score
     for s, i, j in scores:
         # stop if score is negative
@@ -49,13 +47,9 @@ def solveChallenge(challenge: Challenge) -> Tuple[list, int]:
         # only the start and end nodes of routes are kept
         routes[left_startnode] = routes[right_endnode] = left_route + right_route
         route_demands[left_startnode] = route_demands[right_endnode] = merged_demand
-        # update signature in such a way that its near impossible to replicate except by 
-        # running this algorithm on this particular challenge instance
-        signature += (-1) ** (signature % 2) * merged_demand * (left_route[signature % len(left_route)] + 1)
     # each route needs to start and end at depot (node 0)
-    routes = [
+    return [
         [0] + routes[i] + [0] 
         for i in range(N) 
         if routes[i] is not None and routes[i][0] == i
     ]
-    return routes, signature
